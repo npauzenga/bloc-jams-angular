@@ -32,6 +32,15 @@
       ]
     };
 
+    Fixtures.getCollection = function(numberOfAlbums) {
+      var albumArray = [];
+
+      for (var i = 0, j = numberOfAlbums; i < j; i++) {
+        albumArray.push(albumAllHailWestTexas);
+      }
+      return albumArray;
+    };
+
     Fixtures.getAlbum = function() {
       return albumAllHailWestTexas;
     };
