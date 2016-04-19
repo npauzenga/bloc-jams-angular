@@ -1,0 +1,9 @@
+{
+  "firebase": "bloc-jams-angular",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
