@@ -117,6 +117,22 @@
       }
     };
 
+    SongPlayer.next = function() {
+      var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+      var albumLength = currentAlbum.songs.length
+
+      currentSongIndex++;
+
+      if (currentSongIndex > albumLength) {
+        currentBuzzObject.stop();
+        SongPlayer.currentSong.playing = null;
+      } else {
+        var song = currentAlbum.songs[currentSongIndex];
+        setSong(song);
+        playSong(song);
+      }
+    };
+
     return SongPlayer;
   }
 
