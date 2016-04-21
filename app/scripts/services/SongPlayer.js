@@ -12,12 +12,6 @@
     var SongPlayer = {};
 
     /**
-     * @desc the currently selected album
-     * @type {Object}
-     */
-    var currentAlbum = Fixtures.getAlbum();
-
-    /**
      * @desc Buzz object audio file
      * @type {Object}
      */
@@ -30,8 +24,7 @@
      */
     var setSong = function(song) {
       if (currentBuzzObject) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong(SongPlayer.currentSong);
       }
 
       currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -64,10 +57,26 @@
     };
 
     /**
+     * @function stopSong
+     * @desc stops the provided song
+     * @param {Object} song
+     */
+    var stopSong = function(song){
+      currentBuzzObject.stop();
+      song.playing = null;
+    };
+
+    /**
      * @desc the currently playing song
      * @type {Object}
      */
     SongPlayer.currentSong = null;
+
+    /**
+     * @desc the currently selected album
+     * @type {Object}
+     */
+    SongPlayer.currentAlbum = Fixtures.getAlbum();
 
     /**
      * @function SongPlay.play
@@ -108,8 +117,7 @@
       currentSongIndex--;
 
       if (currentSongIndex < 0) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong(SongPlayer.currentSong);
       } else {
         var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
@@ -117,15 +125,18 @@
       }
     };
 
+    /**
+     * @function SongPlay.next
+     * @desc gets the current song's index and increments by one
+     */
     SongPlayer.next = function() {
       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
       var albumLength = currentAlbum.songs.length
 
       currentSongIndex++;
 
-      if (currentSongIndex > albumLength) {
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+      if (currentSongIndex >= albumLength) {
+        stopSong(SongPlayer.currentSong);
       } else {
         var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
