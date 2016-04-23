@@ -61,6 +61,14 @@
         };
 
         /**
+         * @function thumbStyle
+         * @desc updates position of seek bar thumb
+         */
+        scope.thumbStyle = function() {
+         return { left: percentString() };
+        };
+
+        /**
          * @function onClickSeekBar
          * @desc updates seek bar value based on width and location of click
          */
