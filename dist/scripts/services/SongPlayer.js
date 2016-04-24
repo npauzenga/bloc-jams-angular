@@ -90,6 +90,8 @@
      */
     SongPlayer.currentAlbum = Fixtures.getAlbum();
 
+    SongPlayer.currentVolume = 50;
+
     /**
      * @function SongPlay.play
      * @desc sets the current song and plays it if the clicked song was not playing
@@ -164,6 +166,12 @@
     SongPlayer.setCurrentTime = function(time) {
       if (currentBuzzObject) {
         currentBuzzObject.setTime(time);
+      }
+    };
+
+    SongPlayer.setVolume = function(volumeLevel) {
+      if (currentBuzzObject) {
+        currentBuzzObject.setVolume(volumeLevel);
       }
     };
 
